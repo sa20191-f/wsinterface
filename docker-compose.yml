@@ -1,0 +1,12 @@
+version: '2.1'
+services:
+  #microservicio de recursos
+  wsinterface-ms:
+    container_name: wsinterface-ms
+    image: wsinterface-ms
+    build: .
+    command: bundle exec rails s -p 4500 -b '0.0.0.0'
+    volumes:
+      - /lists-app
+    ports:
+      - "4500:4500"
