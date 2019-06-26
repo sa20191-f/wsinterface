@@ -11,3 +11,5 @@ RUN gem install bundler
 RUN bundler update --bundler
 RUN bundle install
 ADD . /lists-app
+
+EXPOSE 4500
