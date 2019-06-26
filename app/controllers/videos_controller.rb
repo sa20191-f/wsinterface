@@ -7,7 +7,7 @@ class VideosController < ApplicationController
     client = Savon::Client.new(wsdl: "http://35.196.3.185:3008/wsvideos/wsdl")
     puts "HOLA COMO ESTAN"
     puts client.operations
-    response = client.call(:find_videos, message: { title: "video_de_prueba_Diego" })
+    response = client.call(:find_videos, message: { title: "" })
     puts response
     puts "HOLA COMO ESTAN"
     render json: response
@@ -20,13 +20,13 @@ class VideosController < ApplicationController
 
   # POST /videos
   def create
-    @video = Video.new(video_params)
-
-    if @video.save
-      render json: @video, status: :created, location: @video
-    else
-      render json: @video.errors, status: :unprocessable_entity
-    end
+    client = Savon::Client.new(wsdl: "http://35.196.3.185:3008/wsvideos/wsdl")
+    puts "HOLA COMO ESTAN"
+    puts client.operations
+    response = client.call(:find_videos, message: { title: params[:title] })
+    puts response
+    puts "HOLA COMO ESTAN"
+    render json: response
   end
 
   # PATCH/PUT /videos/1
@@ -46,7 +46,7 @@ class VideosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_video
-      @video = Video.find(params[:id])
+      @video = Video.find(params[:title])
     end
 
     # Only allow a trusted parameter "white list" through.
