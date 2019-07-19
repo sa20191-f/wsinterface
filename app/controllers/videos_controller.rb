@@ -4,7 +4,7 @@ class VideosController < ApplicationController
   # GET /videos
   def index
     @videos = Video.all
-    client = Savon::Client.new(wsdl: "http://35.196.3.185:3008/wsvideos/wsdl")
+    client = Savon::Client.new(wsdl: "http://35.192.75.202:3008/wsvideos/wsdl")
     puts "HOLA COMO ESTAN"
     puts client.operations
     response = client.call(:find_videos, message: { title: "" })
@@ -20,7 +20,7 @@ class VideosController < ApplicationController
 
   # POST /videos
   def create
-    client = Savon::Client.new(wsdl: "http://35.196.3.185:3008/wsvideos/wsdl")
+    client = Savon::Client.new(wsdl: "http://35.192.75.202:3008/wsvideos/wsdl")
     puts "HOLA COMO ESTAN"
     puts client.operations
     response = client.call(:find_videos, message: { title: params[:title] })
